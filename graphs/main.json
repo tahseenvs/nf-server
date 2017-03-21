@@ -189,13 +189,6 @@
             }
         },
         {
-            "data": 3009,
-            "tgt": {
-                "process": "webserver/Server_jcly3",
-                "port": "listen"
-            }
-        },
-        {
             "data": "req",
             "tgt": {
                 "process": "objects/ExtractProperty_x22wj",
@@ -210,10 +203,17 @@
             }
         },
         {
-            "data": 1000,
+            "data": 10,
             "tgt": {
                 "process": "core/RepeatDelayed_jth4b",
                 "port": "delay"
+            }
+        },
+        {
+            "data": 3010,
+            "tgt": {
+                "process": "webserver/Server_jcly3",
+                "port": "listen"
             }
         }
     ]
