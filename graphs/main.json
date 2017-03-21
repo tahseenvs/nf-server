@@ -9,6 +9,212 @@
     "inports": {},
     "outports": {},
     "groups": [],
-    "processes": {},
-    "connections": []
+    "processes": {
+        "webserver/Server_jcly3": {
+            "component": "webserver/Server",
+            "metadata": {
+                "label": "Server",
+                "x": 36,
+                "y": 252,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "objects/ExtractProperty_x22wj": {
+            "component": "objects/ExtractProperty",
+            "metadata": {
+                "label": "ExtractProperty",
+                "x": 288,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "objects/ExtractProperty_do43l": {
+            "component": "objects/ExtractProperty",
+            "metadata": {
+                "label": "ExtractProperty",
+                "x": 432,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Split_hpm58": {
+            "component": "core/Split",
+            "metadata": {
+                "label": "Split",
+                "x": 144,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/RepeatDelayed_jth4b": {
+            "component": "core/RepeatDelayed",
+            "metadata": {
+                "label": "RepeatDelayed",
+                "x": 576,
+                "y": 180,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "webserver/WriteResponse_wf35x": {
+            "component": "webserver/WriteResponse",
+            "metadata": {
+                "label": "WriteResponse",
+                "x": 684,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "webserver/SendResponse_u2x4b": {
+            "component": "webserver/SendResponse",
+            "metadata": {
+                "label": "SendResponse",
+                "x": 828,
+                "y": 216,
+                "width": 72,
+                "height": 72
+            }
+        },
+        "core/Output_oorcr": {
+            "component": "core/Output",
+            "metadata": {
+                "label": "Output",
+                "x": 288,
+                "y": 36,
+                "width": 72,
+                "height": 72
+            }
+        }
+    },
+    "connections": [
+        {
+            "src": {
+                "process": "objects/ExtractProperty_x22wj",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/ExtractProperty_do43l",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "webserver/Server_jcly3",
+                "port": "request"
+            },
+            "tgt": {
+                "process": "core/Split_hpm58",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_hpm58",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "objects/ExtractProperty_x22wj",
+                "port": "in"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "src": {
+                "process": "objects/ExtractProperty_do43l",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/RepeatDelayed_jth4b",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "webserver/WriteResponse_wf35x",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "webserver/SendResponse_u2x4b",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/Split_hpm58",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "webserver/WriteResponse_wf35x",
+                "port": "in"
+            },
+            "metadata": {
+                "route": 0
+            }
+        },
+        {
+            "src": {
+                "process": "core/Split_hpm58",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "core/Output_oorcr",
+                "port": "in"
+            },
+            "metadata": {}
+        },
+        {
+            "src": {
+                "process": "core/RepeatDelayed_jth4b",
+                "port": "out"
+            },
+            "tgt": {
+                "process": "webserver/WriteResponse_wf35x",
+                "port": "string"
+            },
+            "metadata": {
+                "route": null
+            }
+        },
+        {
+            "data": 3009,
+            "tgt": {
+                "process": "webserver/Server_jcly3",
+                "port": "listen"
+            }
+        },
+        {
+            "data": "req",
+            "tgt": {
+                "process": "objects/ExtractProperty_x22wj",
+                "port": "key"
+            }
+        },
+        {
+            "data": "url",
+            "tgt": {
+                "process": "objects/ExtractProperty_do43l",
+                "port": "key"
+            }
+        },
+        {
+            "data": 1000,
+            "tgt": {
+                "process": "core/RepeatDelayed_jth4b",
+                "port": "delay"
+            }
+        }
+    ]
 }
